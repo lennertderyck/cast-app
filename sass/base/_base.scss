@@ -1,5 +1,12 @@
-main {
-    img {
-        max-width: 100%;
-    }
+html, body {
+    height: 100%;
+}
+
+body {
+    padding: 1rem;
+    padding-top: 2rem;
+    font-family: 'Google Sans';
+    -webkit-app-region: drag;
+    
+    * {transition: all .3s ease;}
 }

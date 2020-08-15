@@ -3,14 +3,43 @@
   <head>
     <meta charset="UTF-8">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
     <title>Hello World!</title>
     <link rel="stylesheet" href="./static/css/main.min.css">
-  </head>
-  <body>
-    <h1>Electron boilerplate</h1>
-
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans:100,300,400,500,700,900,100i,300i,400i,500i,700i,900i">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.0/css/line.css"></head>
+  <body data-playlist="false">
+    <section data-section="addFiles" data-sesam-target="addFiles" class="sesam sesam-show">
+      <i class="uil uil-file-plus"></i>
+      <p class="text-center mb-0 mt-1">Add files to playlist</p>
+      <form data-form="addFiles">
+        <input type="file" name="file" id="addFiles_file">
+      </form>
+    </section>
+    <section data-section="filesList">
+      <div class="list">
+        <div class="list__item item" data-file="">
+          
+        </div>
+      </div>
+    </section>
+    <div class="d-flex" data-label="controls">
+      <section data-section="devicesList">
+        <form data-form="selectDevice">
+          <select id="selectDevice_device" name="device">
+          </select>
+        </form>
+      </section>
+      <section data-section="playBar">
+        <div class="playbar">
+          <div class="playbar__controls">
+            <i class="uil uil-play"></i>
+            <i class="uil uil-pause"></i>
+            <i class="uil uil-stop-circle"></i>
+          </div>
+          <div class="playbar__thumb"></div>
+        </div>
+      </section>
+    </div>
     <!-- You can also require other files to run in this process -->
     <script type="module" src="./renderer.js"></script>
   </body>

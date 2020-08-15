@@ -1,8 +1,5 @@
-// bootstrap basic
-@import 'vendors/bootstrap-custom';
-
 // bootstrap complete
-@import '../node_modules/bootstrap/scss/bootstrap.scss';
+@import '../node_modules/bootstrap/scss/bootstrap';
 
 // abstracts
 @import 'abstracts/functions';
@@ -17,19 +14,15 @@
 // components
 @import 'components/buttons';
 @import 'components/slider';
+@import 'components/controls';
 
 // layout
 @import 'layout/footer';
 @import 'layout/header';
 
-// pages
-@import 'pages/about';
-@import 'pages/home';
-
 // themes
-@import 'themes/admin';
-@import 'themes/theme';
+@import 'themes/light';
+@import 'themes/dark';
 
-// vendors
-
-
+// sections
+@import 'sections/addfiles'
