@@ -15,6 +15,9 @@
 @import 'components/buttons';
 @import 'components/slider';
 @import 'components/controls';
+@import 'components/lists';
+@import 'components/icons';
+@import 'components/forms';
 
 // layout
 @import 'layout/footer';
@@ -25,4 +28,6 @@
 @import 'themes/dark';
 
 // sections
-@import 'sections/addfiles'
+@import 'sections/addfiles';
+@import 'sections/devicesList';
+@import 'sections/prefs';

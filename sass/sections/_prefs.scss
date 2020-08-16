@@ -1,0 +1,20 @@
+[data-label="prefs"] {
+    max-height: 0vh;
+    padding: 0 2rem;
+    overflow: hidden;
+    // background: #80808061;
+    background: #1f1f1f;
+    
+    &.sesam-show {
+        max-height: 100vh;
+        padding: 2rem;
+    }
+    
+    form .selector {
+        input:checked + label {
+            color: var(--color-accent);
+            
+            .uil {color: currentColor}
+        }
+    }
+}

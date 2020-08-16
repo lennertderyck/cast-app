@@ -9,6 +9,7 @@ function createWindow () {
     height: 600,
     title: 'Cast App',
     titleBarStyle: 'hiddenInset',
+    alwaysOnTop: true,
     webPreferences: {
       nodeIntegration: true,
       preload: path.join(__dirname, 'preload.js')

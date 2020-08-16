@@ -3,3 +3,17 @@
     align-items: center;
     justify-content: center;
 }
+
+@mixin position-stretch {
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+}
+
+@mixin text-modern {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+    // font-size: 80%;
+}

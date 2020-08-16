@@ -3,4 +3,72 @@
     bottom: 0px;
     left: 0px;
     right: 0px;
+    background-color: var(--bg-controlBar);
+    backdrop-filter: blur(10px);
+    z-index: 2;
+}
+
+[data-section="playBar"] {
+    flex-grow: 1;
+    
+    .playbar {
+        &__details {
+            line-height: 20px;
+            padding: .8rem 0;
+        }
+        
+        &__showMore.sesam-show {
+            transform: rotate(180deg);
+        }
+    }
+}
+
+[data-section="playerThumb"] {
+    img {
+        width: 100px;
+        height: 100%;
+    }
+}
+
+[data-label="playerProgress"].progress {
+    position: absolute;
+    bottom: 0rem;
+    left: 0px;
+    right: 0px;
+    border-radius: 0px;
+    background-color: transparent;
+    height: .2rem;
+    
+    .progress__bar {
+        position: relative;
+        width: 40%;
+        background: #3fd04b;
+        // background: linear-gradient(0deg, #ffffff00 0%, #3fd04b9c 100%);
+        // background: linear-gradient(0deg, #ffffff00 0%, #3fd04b9c 0%);
+        
+        // &::after {
+        //     content: ' ';
+        //     position: absolute;
+        //     left: 0px;
+        //     right: 0px;
+        //     // bottom: 100%;
+        //     height: 3rem;
+        //     // background: linear-gradient(90deg, #3fd04b 40%, #ffffff00 100%);
+        //     background: red;
+        // }
+    }
+}
+
+[data-section="devicesList"] {
+    display: flex;
+    align-items: center;
+    // padding: 1rem;
+    
+    form select {
+        filter: invert(1);
+        background-color: #e2e2e2;
+        border: none;
+        border-radius: 4px;
+        padding: .4rem .2rem .3rem .2rem;
+    }
 }

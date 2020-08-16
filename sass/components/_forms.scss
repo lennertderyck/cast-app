@@ -1,0 +1,20 @@
+form {
+    .input-group {
+        display: flex;
+        align-items: center;
+    }
+    
+    .selector {
+        input {display: none;}
+        label {
+            display: flex;
+            align-items: center;
+            font-size: 80%;
+            @include text-modern;
+            
+            .uil {
+                margin-right: 0.4rem;
+            }
+        }
+    }
+}

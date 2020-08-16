@@ -7,13 +7,15 @@ const {node, eventCallback, getFormData, Element} = require('cutleryjs/dist/js/l
 const {sesamCollapse, sesam} = require('sesam-collapse/dist/legacy.min.js')
 const ChromecastAPI = require('chromecast-api');
 const client = new ChromecastAPI();
+const movieInfo = require('movie-info');
 
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', async () => {
     app.init();
     
-    client.on('device', (device) => {
+    await client.on('device', (device) => {
         devices.load(device);
     })
+    console.log('loaded')
 })
 
 const app = {
@@ -40,7 +42,7 @@ const app = {
 
 const devices = {
     init() {
-        devices.render();
+        // devices.displayList();
     },
     
     play() {
@@ -54,23 +56,39 @@ const devices = {
         })
     },
     
-    set(name) {
-        console.log(name);
-        const selectedDevice = devicesList[name]
-        console.log(selectedDevice);
+    setPlaying() {
+        // edit json data and dom element
+        // save dom element in json
+    },
+    
+    set(name) {       
+        const selectedDevice = devicesList.get(name);
+        console.log('selected', devices.getSelected());
         window.localStorage.setItem('castDefaultDevice', JSON.stringify(selectedDevice));
     },
     
+    unset() {      
+        devicesList.forEach(device => {
+            const node = device.node.return().querySelector('input')
+            node.removeAttribute('checked')
+        })
+    },
+    
     load(device) {
-        devices.render(device)
-        devicesList[device.name] = device;
+        device.node = devices.render(device);
+        device.node.append('[data-form="selectDevice"] .selector');
+        devicesList.set(device.name, device);
     },
     
     render(device) {
-        const option = new Element('option');
-        option.return().value = device.name;
-        option.inner(device.friendlyName);
-        option.append('[data-section="devicesList"] form > select');
+        const option = new Element('div');
+        option.class(['input-group'])
+        option.inner(`
+            <input type="radio" name="device" id="selectDevice_device_${device.name}" value="${device.name}" checked>
+            <label for="selectDevice_device_${device.name}" class="mr-2"><i class="uil uil-desktop uil__md"></i> ${device.friendlyName}</label>
+        `);
+        return option;
+        // option.append('[data-form="selectDevice"] .selector');
     },
     
     getSelected() {
@@ -78,21 +96,25 @@ const devices = {
         const formData = getFormData(target);
         const name = formData.get('device');
         
-        return devicesList[name];
+        return devicesList.get(name);
     }
-}, devicesList = {};
+}, devicesList = new Map();
 
 const files = {
-    add(file) {
+    async add(file) {
+        console.log(file);
+        
         const dir = path.dirname(file.path);
+        const thumb = await files.findThumb(dir);
+        
         file.dir = dir
-        files.findThumb(dir);
-        filesList.add(file);
-        files.checkExisting();
+        file.thumb = `${dir}/${thumb}`
+        file.node = files.render(file);
         
-        console.log(filesList);
+        filesList.set(file.path, file);
+        files.checkExisting(); // hide fileuploader if one or more files are added
         
-        devices.play();
+        // devices.play();
     },
     
     async findThumb(dirname) {
@@ -116,10 +138,40 @@ const files = {
         }
     },
     
+    checkFiletype(filetype ,callback = null, error = null) {
+        console.log(filetype);
+        
+        const type = {
+            'video/mp4': true,
+            'audio/mp4': true,
+        }[filetype]
+        console.log('type', type)
+        
+        callback()
+    },
+    
+    render(file) {
+        const item = new Element('div');
+        item.class(['list__item', 'item']);
+        item.attributes([
+            ['data-file', file.path]
+        ])
+        item.inner(`
+            <div class="item__thumb">
+                <i class="uil uil-clapper-board"></i>
+            </div>
+            <div class="item__details">
+                <span>${file.name}</span>
+            </div>
+        `)
+        item.append('[data-section="filesList"] .list')
+        return item;
+    },
+    
     renderList() {
         filesList.forEach(item => {
             const listItem = new Element('li');
             
         })
     }
-}, filesList = new Set();
+}, filesList = new Map();

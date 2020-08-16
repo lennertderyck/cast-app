@@ -8,37 +8,83 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans:100,300,400,500,700,900,100i,300i,400i,500i,700i,900i">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.0/css/line.css"></head>
   <body data-playlist="false">
-    <section data-section="addFiles" data-sesam-target="addFiles" class="sesam sesam-show">
-      <i class="uil uil-file-plus"></i>
-      <p class="text-center mb-0 mt-1">Add files to playlist</p>
-      <form data-form="addFiles">
-        <input type="file" name="file" id="addFiles_file">
-      </form>
-    </section>
-    <section data-section="filesList">
-      <div class="list">
-        <div class="list__item item" data-file="">
-          
-        </div>
-      </div>
-    </section>
-    <div class="d-flex" data-label="controls">
-      <section data-section="devicesList">
-        <form data-form="selectDevice">
-          <select id="selectDevice_device" name="device">
-          </select>
+    <div id="app" class="h-100">
+      <section data-section="addFiles" data-sesam-target="addFiles" class="sesam sesam-show">
+        <i class="uil uil-file-plus"></i>
+        <p class="text-center mb-0 mt-1">Add files to playlist</p>
+        <form data-form="addFiles">
+          <input type="file" name="file" id="addFiles_file">
         </form>
       </section>
-      <section data-section="playBar">
-        <div class="playbar">
-          <div class="playbar__controls">
-            <i class="uil uil-play"></i>
-            <i class="uil uil-pause"></i>
-            <i class="uil uil-stop-circle"></i>
+      <section data-section="filesList">
+        <div class="list">
+          <div class="list__item item" data-file="">
+            <div class="item__thumb">
+              <i class="uil uil-clapper-board"></i>
+            </div>
+            <div class="item__details">
+              <span>AvengersEndGame.mp4</span>
+            </div>
           </div>
-          <div class="playbar__thumb"></div>
+          <div class="list__item item" data-file="">
+            <div class="item__thumb">
+              <i class="uil uil-clapper-board"></i>
+            </div>
+            <div class="item__details">
+              <span>AvengersEndGame.mp4</span>
+            </div>
+          </div>
         </div>
       </section>
+    </div>
+    <div class="d-flex flex-column" data-label="controls">
+      <div class="d-flex ">
+        <section data-section="playerThumb">
+          <img data-label="playerThumb" src="https://static.apparata.nl/images/2019/avengers-films-351.jpg" alt="">
+        </section>
+        <div class="d-flex px-3" style="flex-grow: 1;">
+          <section data-section="playBar">
+            <div class="playbar d-flex align-items-center justify-content-between h-100">
+              <div class="d-flex align-items-center">
+                <div class="playbar__controls mr-3">
+                  <i class="uil uil-play uil__md"></i>
+                  <!-- <i class="uil uil-pause"></i>
+                  <i class="uil uil-stop-circle"></i> -->
+                </div>
+                <div class="playbar__details small">
+                  <strong>Avengers - Endgame</strong><br>
+                  <span>some other details</span>
+                </div>
+              </div>
+              <div class="playbar__showMore" data-sesam-trigger="prefs">
+                <i class="uil uil-angle-down uil__lg"></i>
+              </div>
+            </div>
+          </section>
+        </div>
+        <div data-label="playerProgress" class="progress">
+          <div class="progress__bar"></div>
+        </div>
+      </div>
+      <div data-label="prefs" data-sesam-target="prefs">
+        <section data-section="devicesList">
+          <form data-form="selectDevice">
+            <h5 class="mb-2 font-weight-bold">Connect to device</h5>
+            <div class="selector">
+              <!-- <div class="input-group">
+                <input type="radio" name="device" id="selectDevice_device_1" value="huikamer" checked>
+                <label for="selectDevice_device_1" class="mr-2"><i class="uil uil-desktop uil__md"></i> Huiskamer</label>
+              </div>
+              <div class="input-group">
+                <input type="radio" name="device" id="selectDevice_device_2" value="huikamer">
+                <label for="selectDevice_device_2" class="mr-2"><i class="uil uil-desktop uil__md"></i> Stereo</label>
+              </div> -->
+            </div>
+            <!-- <select id="selectDevice_device" name="device">
+            </select> -->
+          </form>
+        </section>
+      </div>
     </div>
     <!-- You can also require other files to run in this process -->
     <script type="module" src="./renderer.js"></script>

@@ -28,6 +28,7 @@
     "cutleryjs": "^2.1.4",
     "electron-packager": "^15.0.0",
     "find": "^0.3.0",
+    "movie-info": "^2.0.5",
     "path": "^0.12.7",
     "sass": "^1.26.10",
     "sesam-collapse": "^5.6.0"
