@@ -1,10 +1,11 @@
 [data-section="addFiles"] {
-    position: fixed;
-    @include position-stretch;
+    position: relative;
+    // position: fixed;
+    // @include position-stretch;
     @include flex-center;
     flex-direction: column;
-    height: 100%;
-    max-height: 100vh;
+    // height: 100%;
+    // max-height: 100vh;
     overflow: hidden;
     z-index: 1;
     

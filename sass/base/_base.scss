@@ -9,14 +9,15 @@ html, body {
 
 body {
     padding-top: 2rem;
+    overflow: hidden;
     font-family: 'Google Sans';
     -webkit-app-region: drag;
     
     * {transition: all .3s ease;}
 }
 
-#app {
-    padding: 1rem;
+.app__wrapper {
+    padding: 0 1rem 1rem 1rem;
 }
 
 img {
