@@ -7,27 +7,16 @@ const {sesamCollapse, sesam} = require('sesam-collapse/dist/legacy.min.js')
 const ChromecastAPI = require('chromecast-api');
 const client = new ChromecastAPI();
 const movieInfo = require('movie-info');
-
 const browserSync = require("browser-sync");
 
-browserSync({  
-    port: 9001,
-    server: '/',
-    open: false,
-    ui: {
-        port: 8080
-    },
-    callbacks: {
-        ready: (err, bs) => {
-            console.log(bs);
-        }
-    }
-});
+window.appSettings = {};
 
 window.addEventListener('DOMContentLoaded', async () => {
+    console.log('ui loading')
     window.appSettings = {};
     
     app.init();
+    server.start();
     
     await client.on('device', (device) => {
         devices.load(device);
@@ -35,12 +24,12 @@ window.addEventListener('DOMContentLoaded', async () => {
 })
 
 client.on('device', function (device) {
-    var mediaURL = 'file://Users/lennertderyck/Movies/een berichtje voor de welpies.mp4';
+    var mediaURL = 'https://192.168.0.165:9001/Users/lennertderyck/Movies/een berichtje voor de welpies.mp4';
   
     device.play(mediaURL, function (err) {
       if (!err) console.log('Playing in your chromecast')
     })
-  })
+})
 
 const app = {
     init() {
@@ -70,11 +59,12 @@ const devices = {
     },
     
     play(url = window.appSettings.loadedFile.path) {
-        console.log(url);
         const backupUrl = 'http://commondatastorage.googleapis.com/gtv-videos-bucket/big_buck_bunny_1080p.mp4';
         const selectedDevice = devices.getSelected();
+        const servedFileUrl = `https://192.168.0.165:9001/${url}`;
+        console.log(servedFileUrl);
         
-        selectedDevice.play(url, (err) => {
+        selectedDevice.play(servedFileUrl, (err) => {
           if (!err) console.log('Playing in your chromecast')
           if (err) console.log(err);
         })
@@ -249,5 +239,31 @@ const network = {
         const $networkSpeedText = node('[data-label="networkSpeed"] span')
         $networkSpeed.setAttribute('data-networkspeed', text);
         $networkSpeedText.innerHTML = text;
+    }
+}
+
+const server = {
+    start() {
+        return browserSync({  
+            port: 9001,
+            server: '/',
+            open: false,
+            https: true,
+            ui: {
+                port: 8080
+            },
+            callbacks: {
+                ready: ui.loadingScreen
+            }
+        });
+    }
+}
+
+const ui = {
+    loadingScreen() {
+        sesam({
+            target: 'loadingScreen',
+            action: 'hide'
+        })
     }
 }

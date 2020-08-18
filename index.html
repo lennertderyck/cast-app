@@ -100,6 +100,12 @@
       <form data-form="addFiles" class="floating">
         <input type="file" name="file" id="addFiles_file">
       </form>
+      
+      <div data-label="loadingScreen" data-sesam-target="loadingScreen" class="sesam sesam-show">
+        <div class="spinner-border text-light" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
     </div>
     <!-- You can also require other files to run in this process -->
     <script type="module" src="./renderer.js"></script>

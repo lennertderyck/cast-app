@@ -1,0 +1,17 @@
+[data-label="loadingScreen"] {
+    display: block;
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-main);
+    z-index: 3;
+    
+    &.sesam-hidden {
+        display: none;
+    }
+}
